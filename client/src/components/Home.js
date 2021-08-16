@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <div>
             <p className="pt-5">WELCOME</p>
-            <h1>We are the MERN developers</h1>
+            <h1>We are the MERN developers: home</h1>
         </div>
     )
 }

@@ -2,10 +2,9 @@ import React from 'react'
 
 const Signup = () => {
     return (
-        <div>
-            <p>WELCOME</p>
-            <h1>We are the MERN developers</h1>
-        </div>
+        <>
+            <h1>We are the mern developers: signup</h1>
+        </>
     )
 }
 
