@@ -9,7 +9,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import "./App.css"
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.css"
 
 function App() {
   return (
