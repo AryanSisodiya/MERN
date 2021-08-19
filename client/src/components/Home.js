@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <div>
-            <p className="pt-5">WELCOME</p>
-            <h1>We are the MERN developers: home</h1>
+        <div className="home-container">
+            <div className="home-container-grid">
+                <p className="home-greeting">WELCOME</p>
+                <h1 className="home-greeting-heading"><Link to="/login" className="home-greeting-heading">Sign In</Link> to Get your Profile</h1>
+            </div>
         </div>
     )
 }
