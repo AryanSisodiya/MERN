@@ -13,8 +13,7 @@ const Spinner = () => {
 
     return (
         <div className="d-flex justify-content-center align-items-center" style={styleDiv}>
-            <div class="spinner-border text-secondary" style={style} role="status">
-            </div>
+            <div className="spinner-border text-secondary" style={style} role="status"></div>
         </div>
     )
 }
