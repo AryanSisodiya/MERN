@@ -31,6 +31,12 @@ body {
   place-content: center;
 }
 
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .form-fields {
   margin-bottom: 1em;
 }
