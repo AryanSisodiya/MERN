@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from "react-helmet-async";
 
-const Contact = () => {
+const Contact = ({ loader }) => {
     const style = {
         resize: "none"
     }
@@ -33,7 +33,7 @@ const Contact = () => {
                                 <textarea name="issue" id="issue-textarea-contact" cols="30" rows="10" className="form-fields-inputs form-control" style={style} placeholder="Write your Issue" required></textarea>
                             </div>
                             <div className="form-fields">
-                                <input type="button" className="form-fields-inputs btn btn-outline-success" value="Submit" />
+                                <input type="button" className="form-fields-inputs btn btn-outline-success" value="Submit" onClick={loader} />
                             </div>
                         </form>
                     </div>

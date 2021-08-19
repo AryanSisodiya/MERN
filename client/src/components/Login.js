@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from "react-helmet-async";
 
-const Login = () => {
+const Login = ({ loader }) => {
     const style = {
         marginBottom: "0 !important"
     }
@@ -27,7 +27,7 @@ const Login = () => {
                                 <input type="password" className="form-fields-inputs form-control" placeholder="Enter your Password" name="password" autoComplete="Your Password here!" required />
                             </div>
                             <div className="form-fields">
-                                <input type="button" className="form-fields-inputs btn btn-outline-success" value="Sign In" />
+                                <input type="button" className="form-fields-inputs btn btn-outline-success" value="Sign In" onClick={loader} />
                             </div>
                         </form>
                     </div>

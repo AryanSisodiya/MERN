@@ -10,30 +10,43 @@ import {
   Route
 } from "react-router-dom";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.css"
+import "bootstrap/dist/css/bootstrap.css";
+import LoadingBar from 'react-top-loading-bar';
+import React from "react";
 
 function App() {
+  const [progress, setProgress] = React.useState(0);
+  function loader() {
+    setProgress(100)
+  }
+
   return (
     <Router>
-      <NavBar />
+      <LoadingBar
+        color='#2d3436'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+        height={2.5}
+      />
+      <NavBar loader={loader} />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home loader={loader} />
         </Route>
         <Route exact path="/about">
           <About />
         </Route>
         <Route exact path="/contact">
-          <Contact />
+          <Contact loader={loader} />
         </Route>
         <Route exact path="/signin">
-          <Login />
+          <Login loader={loader} />
         </Route>
         <Route exact path="/register">
-          <Signup />
+          <Signup loader={loader} />
         </Route>
       </Switch>
-      
+
     </Router>
   );
 }
