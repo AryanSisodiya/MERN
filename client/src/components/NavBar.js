@@ -7,7 +7,7 @@ const NavBar = ({ loader }) => {
         <>
             <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/" onClick={loader}>MERN Website</Link>
+                    <Link className="navbar-brand" to="/">MERN Website</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={loader}>
                         <span className="navbar-toggler-icon"></span>
                     </button>
