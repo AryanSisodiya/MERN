@@ -1,7 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from "react-helmet-async";
 
-const Signup = ({loader}) => {
+const Signup = ({ loader }) => {
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        work: "",
+        password: "",
+        cpassword: ""
+    });
+
+    let name, value;
+    const handleOnChange = (e) => {
+        e.preventDefault();
+        name = e.target.name;
+        value = e.target.value;
+
+        setUser({ ...user, [name]: value });
+    }
+
+    const handleOnSubmit = async () => {
+        const { name, email, phone, work, password, cpassword } = user;
+        const res = await fetch("/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, email, phone, work, password, cpassword })
+        });
+        const resp = await res.json();
+        if (resp.status === 201) {
+            window.alert(resp.message);
+            window.location.pathname = "/signin";
+        } else {
+            window.alert(resp.message)
+        }
+    }
+
     return (
         <>
             <Helmet>
@@ -18,25 +54,25 @@ const Signup = ({loader}) => {
                         </div>
                         <form className="side-menu">
                             <div className="form-fields">
-                                <input type="text" className="form-fields-inputs form-control" placeholder="Enter your Name" name="name" required />
+                                <input type="text" className="form-fields-inputs form-control" placeholder="Enter your Name" name="name" required value={user.name} onChange={handleOnChange} />
                             </div>
                             <div className="form-fields">
-                                <input type="email" className="form-fields-inputs form-control" placeholder="Enter your Email" name="email" required />
+                                <input type="email" className="form-fields-inputs form-control" placeholder="Enter your Email" name="email" required value={user.email} onChange={handleOnChange} />
                             </div>
                             <div className="form-fields">
-                                <input type="number" className="form-fields-inputs form-control" placeholder="Enter your Phone Number" name="phone" required />
+                                <input type="number" className="form-fields-inputs form-control" placeholder="Enter your Phone Number" name="phone" required value={user.phone} onChange={handleOnChange} />
                             </div>
                             <div className="form-fields">
-                                <input type="text" className="form-fields-inputs form-control" placeholder="Enter your Work" name="work" required />
+                                <input type="text" className="form-fields-inputs form-control" placeholder="Enter your Work" name="work" required value={user.work} onChange={handleOnChange} />
                             </div>
                             <div className="form-fields">
-                                <input type="password" className="form-fields-inputs form-control" placeholder="Enter your Password" name="password" autoComplete="Your Password here!" required />
+                                <input type="password" className="form-fields-inputs form-control" placeholder="Enter your Password" name="password" autoComplete="Your Password here!" required value={user.password} onChange={handleOnChange} />
                             </div>
                             <div className="form-fields">
-                                <input type="password" className="form-fields-inputs form-control" placeholder="Confirm Password" name="cpassword" autoComplete="Your Password here!" required />
+                                <input type="password" className="form-fields-inputs form-control" placeholder="Confirm Password" name="cpassword" autoComplete="Your Password here!" required value={user.cpassword} onChange={handleOnChange} />
                             </div>
                             <div className="form-fields">
-                                <input type="button" className="form-fields-inputs btn btn-outline-success" value="Sign Up!!" onClick={loader} />
+                                <input type="button" className="form-fields-inputs btn btn-outline-success" value="Sign Up!!" onClick={() => { loader(); handleOnSubmit() }} />
                             </div>
                         </form>
                     </div>

@@ -4,10 +4,10 @@ const router = express.Router();
 require("../db/conn")
 const User = require("../models/userSchema")
 
-router.post("/register", async (req, res) => {
+router.post("/signup", async (req, res) => {
     const { name, email, phone, work, password, cpassword } = req.body;
 
-    if (!name || !phone || !password || !cpassword || !work || !email) return res.status(422).json({ error: "All fields are required!" })
+    if (!name || !phone || !password || !cpassword || !work || !email) return res.status(422).json({ message: "All fields are required!" })
 
     try {
         const userExist = await User.findOne({ email: email });
@@ -20,11 +20,11 @@ router.post("/register", async (req, res) => {
             const user = new User({ name, email, phone, work, password, cpassword })
 
             await user.save();
-            res.status(201).json({ message: "User registered!" })
+            res.status(201).json({ message: "User registered!" })   
         }
 
     } catch (err) {
-        return res.status(501).json({ "error": `There is an error, error: ${err}` })
+        return res.status(501).json({ message: `There is an error, error: ${err}` })
     }
 
 })
