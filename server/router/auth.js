@@ -2,12 +2,16 @@ const express = require("express")
 const bcrypt = require("bcryptjs")
 const router = express.Router();
 require("../db/conn")
-const User = require("../models/userSchema")
+const User = require("../models/userSchema");
+const authenticate = require("../middleware/authenticate")
 
 router.post("/signup", async (req, res) => {
     const { name, email, phone, work, password, cpassword } = req.body;
 
-    if (!name || !phone || !password || !cpassword || !work || !email) return res.status(422).json({ message: "All fields are required!" })
+    if (!name || !phone || !password || !cpassword || !work || !email) {
+        console.log(name, email, phone, work, password, cpassword)
+        return res.status(422).json({ message: "All fields are required!" })
+    }
 
     try {
         const userExist = await User.findOne({ email: email });
@@ -20,7 +24,7 @@ router.post("/signup", async (req, res) => {
             const user = new User({ name, email, phone, work, password, cpassword })
 
             await user.save();
-            res.status(201).json({ message: "User registered!" })   
+            res.status(201).json({ message: "User registered!" })
         }
 
     } catch (err) {
@@ -57,6 +61,10 @@ router.post("/signin", async (req, res) => {
         } else return res.status(400).json({ message: "Invalid Credentials" })
 
     } catch (err) { return res.status(501).json({ message: "An error occured!: " + err }) }
+})
+
+router.get("/about", authenticate, (req, res) => {
+    res.send(req.rootUser);
 })
 
 module.exports = router

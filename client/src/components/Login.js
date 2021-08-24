@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from "react-helmet-async";
+import { useHistory } from "react-router-dom";
 
 const Login = ({ loader }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const history = useHistory();
     const style = {
         marginBottom: "0 !important"
     }
+
+    const loginUser = async (e) => {
+        e.preventDefault();
+        const res = await fetch("/signin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+        console.log(data)
+
+        if (res.status === 400 || !data) {
+            window.alert("Invalid credentials");
+        } else {
+            window.alert("Logined successfully");
+            history.push("/");
+        }
+    }
+
     return (
         <>
             <Helmet>
@@ -19,15 +45,15 @@ const Login = ({ loader }) => {
                         <div className="image">
                             <img src="Images/img-login.svg" alt="Sign up" className="image-content-img card-img top" />
                         </div>
-                        <form className="side-menu">
+                        <form className="side-menu" method="POST" onSubmit={loginUser}>
                             <div className="form-fields">
-                                <input type="email" className="form-fields-inputs form-control" placeholder="Enter your Email" name="email" required />
+                                <input type="email" className="form-fields-inputs form-control" placeholder="Enter your Email" name="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className="form-fields">
-                                <input type="password" className="form-fields-inputs form-control" placeholder="Enter your Password" name="password" autoComplete="Your Password here!" required />
+                                <input type="password" className="form-fields-inputs form-control" placeholder="Enter your Password" name="password" autoComplete="Your Password here!" required value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                             <div className="form-fields">
-                                <input type="button" className="form-fields-inputs btn btn-outline-success" value="Sign In" onClick={loader} />
+                                <input type="submit" className="form-fields-inputs btn btn-outline-success" value="Sign In" onClick={loader} />
                             </div>
                         </form>
                     </div>

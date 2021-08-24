@@ -1,7 +1,8 @@
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useHistory
 } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -21,6 +22,8 @@ function App() {
   function loader() {
     setProgress(100)
   }
+
+  const history = useHistory();
 
   return (
     <Router>
@@ -46,7 +49,7 @@ function App() {
             <Login loader={loader} />
           </Route>
           <Route exact path="/register">
-            <Signup loader={loader} />
+            <Signup loader={loader} history={history} />
           </Route>
           <Route>
             <NotFoundPage loader={loader} />

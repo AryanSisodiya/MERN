@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from "react-helmet-async";
 
 const Contact = ({ loader }) => {
+    const [data, setData] = useState({});
+    const callAboutPage = async () => {
+        try {
+            const res = await fetch("/about", {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                credentials: "include"
+            });
+
+            const UserData = await res.json();
+            setData(UserData);
+
+            if (!res.status === 200) {
+                const error = new Error(res.error);
+                throw error;
+            }
+
+        } catch (err) {
+        }
+    }
+
+    useEffect(() => {
+        callAboutPage();
+    }, []);
+
     const style = {
         resize: "none"
     }

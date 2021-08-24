@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Helmet } from "react-helmet-async";
+import { useHistory } from "react-router-dom";
 
 const Signup = ({ loader }) => {
+    const history = useHistory();
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -30,9 +32,9 @@ const Signup = ({ loader }) => {
             body: JSON.stringify({ name, email, phone, work, password, cpassword })
         });
         const resp = await res.json();
-        if (resp.status === 201) {
+        if (res.status === 201) {
             window.alert(resp.message);
-            window.location.pathname = "/signin";
+            history.push("/signin")
         } else {
             window.alert(resp.message)
         }

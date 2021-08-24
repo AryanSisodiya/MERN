@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const hostname = "127.0.0.1";
+const cookieParser = require("cookie-parser");
 
 const dotenv = require("dotenv")
 
@@ -10,6 +11,7 @@ const port = process.env.PORT;
 
 require("./db/conn")
 app.use(express.json())
+app.use(cookieParser())
 
 app.use(require("./router/auth"))
 
