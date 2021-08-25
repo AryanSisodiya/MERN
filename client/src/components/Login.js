@@ -26,7 +26,7 @@ const Login = ({ loader }) => {
             window.alert("Invalid credentials");
         } else {
             window.alert("Logined successfully");
-            history.push("/");
+            history.push("/", { replace: true });
         }
     }
 

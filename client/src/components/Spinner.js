@@ -8,7 +8,8 @@ const Spinner = () => {
 
     const styleDiv = {
         height: "100vh",
-        width: "100vw"
+        width: "100vw",
+        overflow: "hidden"
     }
 
     return (

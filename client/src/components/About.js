@@ -19,13 +19,16 @@ const About = () => {
             const UserData = await res.json();
             setData(UserData);
 
-            if (!res.status === 200) {
+            if (res.status !== 200) {
                 const error = new Error(res.error);
                 throw error;
             }
+            // alert("I'm here themn")
 
         } catch (err) {
-            history.push("/signin")
+            // window.alert("I'm here")
+            console.log("herer")
+            history.push("/signin", { replace: true })
         }
     }
 

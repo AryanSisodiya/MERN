@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import LoadingBar from 'react-top-loading-bar';
 import React, { Suspense } from "react";
 import Spinner from "./components/Spinner";
+const Logout = React.lazy(() => import("./components/Logout"))
 const About = React.lazy(() => import("./components/About"))
 const Contact = React.lazy(() => import("./components/Contact"))
 const Home = React.lazy(() => import("./components/Home"))
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route exact path="/register">
             <Signup loader={loader} history={history} />
+          </Route>
+          <Route exact path="/logout">
+            <Logout />
           </Route>
           <Route>
             <NotFoundPage loader={loader} />

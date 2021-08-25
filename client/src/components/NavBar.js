@@ -23,10 +23,13 @@ const NavBar = ({ loader }) => {
                                 <Link className="nav-link" to="/contact" onClick={loader}>Contact Us</Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/register" onClick={loader}>Register</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to="/signin" onClick={loader}>Login</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/register" onClick={loader}>Register</Link>
+                                <Link className="nav-link" to="/logout" onClick={loader}>Log out</Link>
                             </li>
                         </ul>
                     </div>

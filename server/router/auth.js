@@ -68,7 +68,7 @@ router.get("/about", authenticate, (req, res) => {
 })
 
 router.get("/getData", authenticate, (req, res) => {
-    res.send(req.rootUser);
+    res.status(200).send(req.rootUser);
 })
 
 router.post("/contact", authenticate, async (req, res) => {
@@ -82,12 +82,17 @@ router.post("/contact", authenticate, async (req, res) => {
         if (userContact) {
             const userMessage = await userContact.addMessage(name, email, phone, message)
             await userContact.save();
-            return res.status(201).json({message: "Message send successfully"});
-        }  
+            return res.status(201).json({ message: "Message send successfully" });
+        }
 
-        return res.status(401).json({message: "You must be sign in to contact us"});
+        return res.status(401).json({ message: "You must be sign in to contact us" });
 
     } catch (err) { res.status(501).json({ message: err }) }
+})
+
+router.get("/logout", (req, res) => {
+    res.clearCookie("jwtoken", { path: "/" });
+    res.status(200).json({ message: "User logout successfully" });
 })
 
 module.exports = router

@@ -34,7 +34,7 @@ const Signup = ({ loader }) => {
         const resp = await res.json();
         if (res.status === 201) {
             window.alert(resp.message);
-            history.push("/signin")
+            history.push("/signin", { replace: true })
         } else {
             window.alert(resp.message)
         }
