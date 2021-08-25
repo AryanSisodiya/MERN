@@ -1,8 +1,11 @@
+/* Font Families */
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Exo&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 
+/* Reset styles */
 nav {
   font-family: "Cinzel", serif;
 }
@@ -11,6 +14,7 @@ body {
   background: #ecf0f1 !important;
 }
 
+/* Container styles */
 .container-center {
   display: grid;
   place-content: center;
@@ -42,6 +46,7 @@ body {
   margin-bottom: 1em;
 }
 
+/* Image styles */
 .image {
   height: 30em;
 }
@@ -50,6 +55,7 @@ body {
   height: inherit;
 }
 
+/* Home page styles */
 .home-container {
   height: 100vh;
   position: fixed;
@@ -58,6 +64,7 @@ body {
   left: 0;
   background: #e2e6e6;
   z-index: -1;
+  font-size: 62.5%;
 }
 
 .home-container-grid {
@@ -79,8 +86,15 @@ body {
   font-weight: 900;
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
+  color: blue;
 }
 
+.home-user-heading {
+  font-size: 5em;
+  font-family: "Audiowide", cursive;
+}
+
+/* 404 Notfound page style */
 .notFound {
   position: absolute;
   top: 0;
@@ -107,6 +121,7 @@ body {
   color: #cbdce0;
 }
 
+/* Media queries for responsiveness */
 @media only screen and (max-width: 758px) {
   .login-grid-container {
     grid-template-columns: auto;
