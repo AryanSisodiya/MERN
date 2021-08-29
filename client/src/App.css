@@ -107,6 +107,7 @@ body {
   justify-content: center;
   z-index: -3;
   font-family: "Georama", sans-serif;
+  text-align: center;
 }
 
 .notFound-desc {

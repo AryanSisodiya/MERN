@@ -1,8 +1,30 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
+import { UserContext } from '../App';
 
 const NavBar = ({ loader }) => {
+    const { state, dispatch } = React.useContext(UserContext);
+    const ToggleLogin = () => {
+        if (state) {
+            return (
+                <>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/logout" onClick={loader}>Logout</Link>
+                    </li>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/signin" onClick={loader}>Login</Link>
+                    </li>
+                </>
+            )
+        }
+    }
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -25,12 +47,7 @@ const NavBar = ({ loader }) => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/register" onClick={loader}>Register</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/signin" onClick={loader}>Login</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/logout" onClick={loader}>Log out</Link>
-                            </li>
+                            <ToggleLogin />
                         </ul>
                     </div>
                 </div>

@@ -36,11 +36,6 @@ const About = () => {
         callAboutPage();
     }, []);
 
-    const imgStyle = {
-        height: "inherit",
-        width: "-webkit-fill-available"
-    }
-
     const colMd6Style = {
         "alignSelf": "center"
     }
@@ -50,10 +45,16 @@ const About = () => {
             <div className="container emp-profile my-4">
                 <form method="get">
                     <div className="row">
-                        <div className="col-md-4">
-                            <img src={data.name === "Aryan Sisodiya" ? "Images/aryan.jpg" : "Images/profile.png"} alt="User pic" style={imgStyle} />
+                        <div className="col-md-4" style={{
+                            display: "grid",
+                            "placeItems": "center"
+                        }}>
+                            <img src={data.name === "Aryan Sisodiya" ? "Images/aryan.jpg" : "Images/profile.svg"} alt="User pic" />
                         </div>
-                        <div className="col-md-6" style={colMd6Style}>
+                        {/* <div className="col-md-2">
+                            <input type="button" className="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                        </div> */}
+                        <div className="col-md-8" style={colMd6Style}>
                             <div className="profile-head">
                                 <h5>{data.name}</h5>
                                 <h6>{data.work}</h6>
@@ -72,9 +73,7 @@ const About = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-md-2">
-                            <input type="button" className="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-                        </div>
+
                     </div>
                     <div className="row">
                         <div className="col-md-4">

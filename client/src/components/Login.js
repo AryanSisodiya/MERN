@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Helmet } from "react-helmet-async";
 import { useHistory } from "react-router-dom";
+import { UserContext } from '../App';
 
 const Login = ({ loader }) => {
+    const { state, dispatch } = React.useContext(UserContext);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
@@ -25,6 +28,7 @@ const Login = ({ loader }) => {
         if (res.status === 400 || !data) {
             window.alert("Invalid credentials");
         } else {
+            dispatch({ type: "USER", payload: true })
             window.alert("Logined successfully");
             history.push("/", { replace: true });
         }
