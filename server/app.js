@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv")
 
 dotenv.config({ path: "./config.env" })
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 // const User = require("./models/userSchema")
 
 require("./db/conn")
